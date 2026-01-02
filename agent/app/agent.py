@@ -1,14 +1,16 @@
+from datetime import datetime
 from textwrap import dedent
-from typing import Any
+from typing import Any, Literal, TypedDict
 import os
 import urllib.parse
 
 from ag_ui.core import EventType, StateSnapshotEvent
 from httpx import AsyncClient
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, TypeAdapter
 from pydantic_ai import Agent, ModelRetry, RunContext
 from pydantic_ai.ag_ui import StateDeps
 from pydantic_ai.models.openai import OpenAIResponsesModel
+from tavily import AsyncTavilyClient
 import logfire
 
 # load environment variables
@@ -30,9 +32,11 @@ class Deps(BaseModel):
         default_factory=list,
         description="The list of already written proverbs",
     )
-    client: AsyncClient = AsyncClient()
+    httpx_client: AsyncClient = AsyncClient()
     weather_api_key: str | None = os.getenv("WEATHER_API_KEY")
     geo_api_key: str | None = os.getenv("GEO_API_KEY")
+    tavily_api_key: str | None = os.getenv("TAVILY_API_KEY")
+    tavily_client: AsyncTavilyClient = AsyncTavilyClient(tavily_api_key)
 
 
 # =====
@@ -49,6 +53,8 @@ agent = Agent(
     
     When discussing proverbs, ALWAYS use the get_proverbs tool to see the current list before
     mentioning, updating, or discussing proverbs with the user.
+    
+    If you require today's date, use get_current_date
   """).strip(),
 )
 
@@ -101,7 +107,7 @@ async def get_lat_lng(
 
     params = {"access_token": ctx.deps.state.geo_api_key}
     loc = urllib.parse.quote(location_description)
-    r = await ctx.deps.state.client.get(
+    r = await ctx.deps.state.httpx_client.get(
         f"https://api.mapbox.com/geocoding/v5/mapbox.places/{loc}.json", params=params
     )
     r.raise_for_status()
@@ -135,7 +141,7 @@ async def get_weather(
         "units": "metric",
     }
     with logfire.span("calling weather API", params=params) as span:
-        r = await ctx.deps.state.client.get(
+        r = await ctx.deps.state.httpx_client.get(
             "https://api.tomorrow.io/v4/weather/realtime", params=params
         )
         r.raise_for_status()
@@ -173,3 +179,61 @@ async def get_weather(
         "temperature": f"{values['temperatureApparent']:0.0f}°C",
         "description": code_lookup.get(values["weatherCode"], "Unknown"),
     }
+
+
+class TavilySearchResult(TypedDict):
+    """A Tavily search result.
+
+    See [Tavily Search Endpoint documentation](https://docs.tavily.com/api-reference/endpoint/search)
+    for more information.
+    """
+
+    title: str
+    """The title of the search result."""
+    url: str
+    """The URL of the search result.."""
+    content: str
+    """A short description of the search result."""
+    score: float
+    """The relevance score of the search result."""
+
+
+tavily_search_ta = TypeAdapter(list[TavilySearchResult])
+
+
+@agent.tool
+async def tavily_search_tool(
+    ctx: RunContext[StateDeps[Deps]],
+    query: str,
+    search_deep: Literal["basic", "advanced"] = "basic",
+    topic: Literal["general", "news"] = "general",
+    time_range: Literal["day", "week", "month", "year"] | None = None,
+) -> list[TavilySearchResult]:
+    """Searches Tavily for the given query and returns the results.
+
+    Args:
+        query: The search query to execute with Tavily.
+        search_deep: The depth of the search.
+        topic: The category of the search.
+        time_range: The time range back from the current date to filter results.
+
+    Returns:
+        A list of search results from Tavily.
+    """
+    search_kwargs: dict[str, Any] = {
+        "search_depth": search_deep,
+        "topic": topic,
+    }
+    if time_range is not None:
+        search_kwargs["time_range"] = time_range
+    results = await ctx.deps.state.tavily_client.search(query, **search_kwargs)  # type: ignore[reportUnknownMemberType]
+    return tavily_search_ta.validate_python(results["results"])
+
+
+@agent.tool
+def get_current_date(
+    ctx: RunContext[StateDeps[Deps]],
+) -> str:
+    print("Getting current date...")
+    current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    return current_date

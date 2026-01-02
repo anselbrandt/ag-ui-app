@@ -10,6 +10,7 @@ dependencies = [
     "pydantic>=2.12.5",
     "pydantic-ai>=1.39.0",
     "python-dotenv>=1.2.1",
+    "tavily-python>=0.7.17",
     "uvicorn>=0.37.0",
 ]
 
