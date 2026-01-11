@@ -11,3 +11,6 @@ wheels/
 
 # Secrets
 .env
+
+# Debug Output
+debug_output/

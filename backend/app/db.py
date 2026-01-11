@@ -1,10 +1,9 @@
+import logging
 import uuid
-from typing import AsyncGenerator, Optional
+from typing import AsyncGenerator
 
 import logfire
 import redis.asyncio as redis
-from dotenv import load_dotenv
-from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import (
     AsyncEngine,
     AsyncSession,
@@ -16,39 +15,40 @@ from sqlalchemy.pool import NullPool
 from app.config import settings
 from app.models.base import Base
 
-load_dotenv()
+logger = logging.getLogger(__name__)
 
-DATABASE_URL = settings.database_url
-REDIS_URL = settings.redis_url
 
-engine: Optional[AsyncEngine] = None
-async_session: Optional[async_sessionmaker[AsyncSession]] = None
-redis_client: Optional[redis.Redis] = None
+class DatabaseUnavailableError(Exception):
+    """Raised when database connection is not available."""
+
+
+class RedisUnavailableError(Exception):
+    """Raised when Redis connection is not available."""
+
+
+engine: AsyncEngine | None = None
+async_session: async_sessionmaker[AsyncSession] | None = None
+redis_client: redis.Redis | None = None
 
 
 async def create_tables(engine: AsyncEngine) -> None:
-    """Create all tables defined in models if they don't exist"""
-
-    models = []
-
-    print(f"Checking and creating tables for {len(models)} models...")
-
+    """Create all tables defined in models if they don't exist."""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
-        print("Tables created successfully (if they didn't exist)")
+    logger.info("Database tables created successfully")
 
 
 async def init_db() -> None:
-    """Initialize database connection"""
+    """Initialize database connection."""
     global engine, async_session
 
     try:
         engine = create_async_engine(
-            DATABASE_URL,
-            poolclass=NullPool,  # Required for Supabase
-            echo=True,  # Set to False in production
+            settings.database_url,
+            poolclass=NullPool,
+            echo=settings.db_echo,
             future=True,
-            connect_args={  # important settings for asyncpg
+            connect_args={
                 "prepared_statement_name_func": lambda: f"__asyncpg_{uuid.uuid4()}__",
                 "statement_cache_size": 0,
                 "prepared_statement_cache_size": 0,
@@ -57,16 +57,15 @@ async def init_db() -> None:
 
         logfire.instrument_sqlalchemy(engine=engine)
 
-        # Create tables first to ensure base schema exists
         await create_tables(engine)
 
         async_session = async_sessionmaker(
             engine, class_=AsyncSession, expire_on_commit=False
         )
 
-        print("Database connection initialized")
+        logger.info("Database connection initialized")
     except Exception as e:
-        print(f"Failed to initialize database: {e}")
+        logger.error("Failed to initialize database: %s", e)
         if engine:
             await engine.dispose()
             engine = None
@@ -75,20 +74,23 @@ async def init_db() -> None:
 
 
 async def init_redis() -> None:
-    """Initialize Redis connection"""
+    """Initialize Redis connection."""
     global redis_client
 
     try:
         logfire.instrument_redis()
 
         redis_client = redis.from_url(
-            REDIS_URL, encoding="utf-8", decode_responses=True, health_check_interval=30
+            settings.redis_url,
+            encoding="utf-8",
+            decode_responses=True,
+            health_check_interval=30,
         )
 
         await redis_client.ping()
-        print("Redis connection initialized")
+        logger.info("Redis connection initialized")
     except Exception as e:
-        print(f"Failed to initialize Redis: {e}")
+        logger.error("Failed to initialize Redis: %s", e)
         if redis_client:
             await redis_client.close()
             redis_client = None
@@ -96,51 +98,42 @@ async def init_redis() -> None:
 
 
 async def close_db() -> None:
-    """Close database connection"""
+    """Close database connection."""
     global engine, async_session
     if engine:
         await engine.dispose()
         engine = None
         async_session = None
-        print("Database connection closed")
+        logger.info("Database connection closed")
 
 
 async def close_redis() -> None:
-    """Close Redis connection"""
+    """Close Redis connection."""
     global redis_client
     if redis_client:
         await redis_client.close()
         redis_client = None
-        print("Redis connection closed")
+        logger.info("Redis connection closed")
 
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
-    """Get database session"""
+    """Get database session."""
     if not async_session:
-        raise HTTPException(
-            status_code=503,
-            detail="Database unavailable. Please check your database connection and try again.",
-        )
+        raise DatabaseUnavailableError("Database connection not initialized")
 
     async with async_session() as session:
-        try:
-            yield session
-        finally:
-            await session.close()
+        yield session
 
 
 def get_session() -> async_sessionmaker[AsyncSession]:
-    """Get session maker for background tasks"""
+    """Get session maker for background tasks."""
     if not async_session:
-        raise RuntimeError("Database not initialized")
+        raise DatabaseUnavailableError("Database connection not initialized")
     return async_session
 
 
 async def get_redis() -> redis.Redis:
-    """Get Redis client"""
+    """Get Redis client."""
     if not redis_client:
-        raise HTTPException(
-            status_code=503,
-            detail="Redis unavailable. Please check your Redis connection and try again.",
-        )
+        raise RedisUnavailableError("Redis connection not initialized")
     return redis_client

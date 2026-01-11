@@ -1,15 +1,7 @@
-import json
 import os
-from typing import List
 
-from pydantic import Field
+from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
-
-
-def load_allowed_users() -> List[str]:
-    with open("app/data/allowed_users.json", "r") as file:
-        data = json.load(file)
-        return data["allowed_users"]
 
 
 class Settings(BaseSettings):
@@ -21,18 +13,32 @@ class Settings(BaseSettings):
         case_sensitive=False,
         extra="forbid",
     )
-
     database_url: str = Field(
         default="postgresql+asyncpg://postgres@localhost:5432/database",
         description="Database connection URL",
     )
+    db_echo: bool = Field(
+        default=False,
+        description="Echo SQL queries to logs",
+    )
+    geo_api_key: SecretStr = Field(default=SecretStr(""), description="Mapbox API Key")
+    openai_api_key: SecretStr = Field(
+        default=SecretStr(""), description="OpenAI API Key"
+    )
     redis_url: str = Field(
         default="redis://localhost:6379", description="Redis connection URL"
     )
-    openai_api_key: str = Field(default="", description="OpenAI API Key")
-    tavily_api_key: str = Field(default="", description="Tavily API Key")
-    geo_api_key: str = Field(default="", description="Mapbox API Key")
-    weather_api_key: str = Field(default="", description="Tomorrow.io API Key")
+    tavily_api_key: SecretStr = Field(
+        default=SecretStr(""), description="Tavily API Key"
+    )
+    unipile_account_id: str = Field(default="", description="Unipile account ID")
+    unipile_api_key: SecretStr = Field(
+        default=SecretStr(""), description="Unipile API Key"
+    )
+    unipile_dsn: str = Field(default="", description="Unipile DSN")
+    weather_api_key: SecretStr = Field(
+        default=SecretStr(""), description="Tomorrow.io API Key"
+    )
 
 
 settings = Settings()

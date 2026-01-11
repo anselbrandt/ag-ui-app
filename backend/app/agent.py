@@ -1,22 +1,19 @@
 from textwrap import dedent
-from typing import Any, cast, Literal
-import json
-import os
+from typing import Any, Literal, cast
 
+from ag_ui.core import EventType, StateSnapshotEvent
 from pydantic import BaseModel, Field
 from pydantic_ai import Agent, RunContext
 from pydantic_ai.ag_ui import StateDeps
-from ag_ui.core import EventType, StateSnapshotEvent
-from pydantic_ai.models.openai import OpenAIResponsesModel
 from pydantic_ai.common_tools.tavily import TavilySearchResult
+from pydantic_ai.models.openai import OpenAIResponsesModel
 from tavily import TavilyClient
 
-# load environment variables
-from dotenv import load_dotenv
+from app.config import settings
+from app.schemas import LinkedinInmailBalance, UnipileAccountResponse
+from app.services import Unipile
 
-load_dotenv()
-
-TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
+_tavily_client = TavilyClient(api_key=settings.tavily_api_key.get_secret_value())
 
 
 # =====
@@ -43,15 +40,15 @@ agent = Agent(
     deps_type=StateDeps[ChatState],
     system_prompt=dedent("""
     You are a helpful assistant that helps manage and discuss proverbs.
-    
+
     The user has a list of proverbs that you can help them manage.
     You have tools available to add, set, or retrieve proverbs from the list.
-    
+
     When discussing proverbs, ALWAYS use the get_proverbs tool to see the current list before
     mentioning, updating, or discussing proverbs with the user.
-    
+
     Use the search_web tool to search the web.
-                         
+
     Always use the get_search_results tool to return the results to the user or to list previous results.
   """).strip(),
 )
@@ -63,7 +60,6 @@ agent = Agent(
 @agent.tool
 def get_proverbs(ctx: RunContext[StateDeps[ChatState]]) -> list[str]:
     """Get the current list of proverbs."""
-    print(f"📖 Getting proverbs: {ctx.deps.state.proverbs}")
     return ctx.deps.state.proverbs
 
 
@@ -96,7 +92,7 @@ def get_weather(_: RunContext[StateDeps[ChatState]], location: str) -> str:
 
 
 @agent.tool
-def search_web(
+async def search_web(
     ctx: RunContext[StateDeps[ChatState]],
     query: str,
     search_depth: Literal["basic", "advanced", "fast", "ultra-fast"] = "basic",
@@ -115,13 +111,11 @@ def search_web(
         search_depth: "basic" or "advanced"
         topic: "general", "news", or "finance"
         time_range: "day", "week", "month" or "year" (optional)
-        start_date: begining of date range yyy-mm-dd
-        end_date: end of date range yyy-mm-dd
+        start_date: Beginning of date range yyyy-mm-dd
+        end_date: End of date range yyyy-mm-dd
         days: Number of days back to search (optional)
         max_results: Maximum number of results
     """
-    tavily_client = TavilyClient(api_key=TAVILY_API_KEY)
-
     kwargs = {
         "search_depth": search_depth,
         "topic": topic,
@@ -131,13 +125,9 @@ def search_web(
         "days": days,
         "max_results": max_results,
     }
-    # Filter out None values
     kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-    response = tavily_client.search(query, **cast(dict[str, Any], kwargs))
-
-    with open("search_results.json", "w", encoding="utf-8") as f:
-        json.dump(response, f, indent=2)
+    response = _tavily_client.search(query, **cast(dict[str, Any], kwargs))
 
     ctx.deps.state.search_results.extend(response["results"])
 
@@ -151,6 +141,21 @@ def search_web(
 def get_search_results(
     ctx: RunContext[StateDeps[ChatState]],
 ) -> list[TavilySearchResult]:
-    """Get the current list search results."""
-    print(f"📖 Getting search results: {ctx.deps.state.search_results}")
+    """Get the current list of search results."""
     return ctx.deps.state.search_results
+
+
+@agent.tool
+async def get_account_info(
+    _: RunContext[StateDeps[ChatState]],
+) -> UnipileAccountResponse:
+    """Get the user's Unipile account information."""
+    return await Unipile.get_account()
+
+
+@agent.tool
+async def get_inmail_balance(
+    _: RunContext[StateDeps[ChatState]],
+) -> LinkedinInmailBalance:
+    """Get the user's LinkedIn InMail balance."""
+    return await Unipile.get_inmail_balance()
