@@ -4,7 +4,7 @@ from starlette.requests import Request
 from starlette.responses import Response
 import logfire
 
-from .agent import ProverbsState, StateDeps, agent
+from .agent import ChatState, StateDeps, agent
 
 app = FastAPI()
 
@@ -17,5 +17,5 @@ logfire.instrument_pydantic_ai()
 @app.post("/")
 async def run_agent(request: Request) -> Response:
     return await AGUIAdapter.dispatch_request(
-        request, agent=agent, deps=StateDeps(ProverbsState())
+        request, agent=agent, deps=StateDeps(ChatState())
     )
