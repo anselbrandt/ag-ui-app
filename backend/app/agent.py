@@ -1,3 +1,4 @@
+from datetime import datetime
 from textwrap import dedent
 from typing import Any, Literal, cast
 
@@ -50,6 +51,8 @@ agent = Agent(
     Use the search_web tool to search the web.
 
     Always use the get_search_results tool to return the results to the user or to list previous results.
+                         
+    If you require the current date or time use get_datetime
   """).strip(),
 )
 
@@ -159,3 +162,9 @@ async def get_inmail_balance(
 ) -> LinkedinInmailBalance:
     """Get the user's LinkedIn InMail balance."""
     return await Unipile.get_inmail_balance()
+
+
+@agent.tool_plain
+async def get_datetime() -> str:
+    """Get the current time and date."""
+    return datetime.now().astimezone().isoformat()
