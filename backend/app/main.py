@@ -99,7 +99,7 @@ async def redis_unavailable_handler(
     )
 
 
-@app.post("/")
+@app.post("/copilotkit")
 async def run_agent(request: Request) -> Response:
     return await AGUIAdapter.dispatch_request(
         request, agent=agent, deps=StateDeps(ChatState())

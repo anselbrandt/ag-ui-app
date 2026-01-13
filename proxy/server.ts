@@ -12,7 +12,7 @@ const server = createServer((req, res) => {
   const runtime = new CopilotRuntime({
     agents: {
       // Our FastAPI endpoint URL
-      my_agent: new HttpAgent({ url: "http://localhost:8000/" }),
+      my_agent: new HttpAgent({ url: "http://localhost:8000/copilotkit" }),
     },
   });
   const handler = copilotRuntimeNodeHttpEndpoint({
