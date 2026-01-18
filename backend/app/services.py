@@ -1,6 +1,14 @@
-from httpx import AsyncClient
+import logfire
+from httpx import AsyncClient, HTTPStatusError
 from app.config import settings
-from app.schemas import UnipileAccountResponse, LinkedinInmailBalance
+from app.schemas import (
+    UnipileAccountResponse,
+    LinkedinInmailBalance,
+    SearchParametersRequest,
+    LinkedinSearchParametersResponse,
+    LinkedinSearchRequest,
+    LinkedinSearchResponse,
+)
 
 
 class Unipile:
@@ -39,3 +47,45 @@ class Unipile:
             params={"account_id": Unipile._ACCOUNT_ID},
         )
         return LinkedinInmailBalance(**data)
+
+    @staticmethod
+    async def get_search_parameters(
+        type: str,
+        service: str = "CLASSIC",
+        keywords: str | None = None,
+        limit: int | None = None,
+    ) -> LinkedinSearchParametersResponse:
+        request = SearchParametersRequest(
+            account_id=Unipile._ACCOUNT_ID,
+            service=service,
+            type=type,
+            keywords=keywords,
+            limit=limit,
+        )
+        data = await Unipile._request(
+            "get",
+            "/api/v1/linkedin/search/parameters",
+            params=request.model_dump(exclude_none=True),
+        )
+        return LinkedinSearchParametersResponse.model_validate(data)
+
+    @staticmethod
+    async def search_linkedin(
+        request: LinkedinSearchRequest,
+    ) -> LinkedinSearchResponse:
+        headers = {
+            **Unipile._HEADERS,
+            "content-type": "application/json",
+        }
+        # limit must be passed as a query parameter, not in the request body
+        params: dict[str, str | int] = {"account_id": Unipile._ACCOUNT_ID}
+        if request.limit is not None:
+            params["limit"] = request.limit
+        data = await Unipile._request(
+            "post",
+            "/api/v1/linkedin/search",
+            headers=headers,
+            params=params,
+            json=request.model_dump(exclude_none=True, exclude={"limit"}),
+        )
+        return LinkedinSearchResponse.model_validate(data)
