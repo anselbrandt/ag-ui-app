@@ -14,6 +14,7 @@ from app.config import settings
 from app.schemas import (
     CompanyHeadcount,
     LinkedinInmailBalance,
+    LinkedinProfileResponse,
     LinkedinSearchItem,
     LinkedinSearchParameter,
     LinkedinSearchRequest,
@@ -88,6 +89,9 @@ agent = Agent(
     3. Use get_linkedin_search_results to retrieve and present the search results to the user
 
     4. Use clear_linkedin_search_results when the user wants to start a fresh search
+
+    5. Use get_linkedin_profile to fetch a user's full profile by their public_identifier or provider_id
+       - Returns detailed information including work experience, education, skills, contact info, etc.
 
     ## Other Tools
     If you require the current date or time use get_datetime.
@@ -202,6 +206,22 @@ async def get_inmail_balance(
 ) -> LinkedinInmailBalance:
     """Get the user's LinkedIn InMail balance."""
     return await Unipile.get_inmail_balance()
+
+
+@agent.tool
+async def get_linkedin_profile(
+    _: RunContext[StateDeps[ChatState]],
+    public_identifier_or_provider_id: str,
+) -> LinkedinProfileResponse:
+    """
+    Get a LinkedIn user's full profile.
+
+    Args:
+        public_identifier_or_provider_id: The user's public identifier (e.g., "johndoe")
+            or provider ID (e.g., "ACoAAAIK3bMB5UKEWP8_CNjsdlzUn0SfCTvYJJA").
+            You can find these in LinkedIn search results.
+    """
+    return await Unipile.get_linkedin_profile(public_identifier_or_provider_id)
 
 
 @agent.tool

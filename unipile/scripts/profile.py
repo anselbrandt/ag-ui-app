@@ -6,6 +6,8 @@ from pathlib import Path
 from dotenv import load_dotenv
 from httpx import AsyncClient
 
+from schemas import LinkedinProfileResponse
+
 load_dotenv()
 
 UNIPILE_DSN = os.getenv("UNIPILE_DSN", "")
@@ -20,7 +22,7 @@ outdir.mkdir(exist_ok=True)
 outpath = outdir / "linkedin_profile.json"
 
 
-async def main(public_identifier_or_provider_id: str):
+async def main(public_identifier_or_provider_id: str) -> LinkedinProfileResponse:
     url = f"{UNIPILE_DSN}/api/v1/users/{public_identifier_or_provider_id}"
 
     headers = {
@@ -39,11 +41,14 @@ async def main(public_identifier_or_provider_id: str):
         response.raise_for_status()
 
         data = response.json()
+        profile = LinkedinProfileResponse.model_validate(data)
 
         with open(outpath, "w") as f:
-            json.dump(data, f, indent=2)
+            json.dump(profile.model_dump(exclude_none=True), f, indent=2)
         print(f"Response saved to {outpath}")
+
+        return profile
 
 
 if __name__ == "__main__":
-    asyncio.run(main(provider_id))
+    asyncio.run(main(public_identifier))

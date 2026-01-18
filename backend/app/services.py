@@ -8,6 +8,7 @@ from app.schemas import (
     LinkedinSearchParametersResponse,
     LinkedinSearchRequest,
     LinkedinSearchResponse,
+    LinkedinProfileResponse,
 )
 
 
@@ -89,3 +90,14 @@ class Unipile:
             json=request.model_dump(exclude_none=True, exclude={"limit"}),
         )
         return LinkedinSearchResponse.model_validate(data)
+
+    @staticmethod
+    async def get_linkedin_profile(
+        public_identifier_or_provider_id: str,
+    ) -> LinkedinProfileResponse:
+        data = await Unipile._request(
+            "get",
+            f"/api/v1/users/{public_identifier_or_provider_id}",
+            params={"account_id": Unipile._ACCOUNT_ID, "linkedin_sections": "*"},
+        )
+        return LinkedinProfileResponse.model_validate(data)
