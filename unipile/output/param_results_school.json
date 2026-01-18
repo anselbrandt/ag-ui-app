@@ -1,0 +1,68 @@
+{
+  "object": "LinkedinSearchParametersList",
+  "items": [
+    {
+      "object": "LinkedinSearchParameter",
+      "title": "The University of British Columbia",
+      "id": "4373",
+      "picture_url": "https://media.licdn.com/dms/image/v2/C4E0BAQH415qlDBkj8Q/company-logo_100_100/company-logo_100_100/0/1630608877834/universityofbc_logo?e=1770249600&v=beta&t=HbMOEFX4v1UN6n6frhXJJ9QZ-wJTJL5Lz4xZVwNFooU"
+    },
+    {
+      "object": "LinkedinSearchParameter",
+      "title": "UBC Sauder School of Business",
+      "id": "474551",
+      "picture_url": "https://media.licdn.com/dms/image/v2/C4E0BAQFe1EmGaOn1ag/company-logo_100_100/company-logo_100_100/0/1631304522006?e=1770249600&v=beta&t=VEOefANBFwlL5r6jPXtWjZM22KVUDIXuv4uMnvD07fU"
+    },
+    {
+      "object": "LinkedinSearchParameter",
+      "title": "Peter A. Allard School of Law at UBC",
+      "id": "15099620",
+      "picture_url": "https://media.licdn.com/dms/image/v2/C560BAQGAK9_zUVJ2vw/company-logo_100_100/company-logo_100_100/0/1631330803583?e=1770249600&v=beta&t=_KJUwwyHtd2UDczVfW8zijW0OGIVK5yMwIxDIci-3UY"
+    },
+    {
+      "object": "LinkedinSearchParameter",
+      "title": "UBC Engineering",
+      "id": "2758087",
+      "picture_url": "https://media.licdn.com/dms/image/v2/D560BAQFV4z10A8QabA/company-logo_100_100/B56ZfxSPiEG0AQ-/0/1752099781086/ubcengineering_logo?e=1770249600&v=beta&t=NrF5bAV71WK-2pbPcI9gWPGe7gzAYOmcSWLOAqieS-Q"
+    },
+    {
+      "object": "LinkedinSearchParameter",
+      "title": "UBC School of Population and Public Health",
+      "id": "15129700",
+      "picture_url": "https://media.licdn.com/dms/image/v2/D560BAQFEaR8VDGs82Q/company-logo_100_100/B56ZePCDLnGQAc-/0/1750451368926/ubc_school_of_population_and_public_health_logo?e=1770249600&v=beta&t=7Onu_ByD32Z1qB312zuNa9-5NJUTa4-MHGMtJ2MfI4s"
+    },
+    {
+      "object": "LinkedinSearchParameter",
+      "title": "UBC iSchool",
+      "id": "18980980",
+      "picture_url": "https://media.licdn.com/dms/image/v2/D560BAQFH23Oa5DrgzA/company-logo_100_100/company-logo_100_100/0/1665690596967/ubcischool_logo?e=1770249600&v=beta&t=fws2q7oBik4EygeD6qCWhr-ZYqeKItY7FFo0UQd8vNM"
+    },
+    {
+      "object": "LinkedinSearchParameter",
+      "title": "UBC Electrical and Computer Engineering",
+      "id": "15134449",
+      "picture_url": "https://media.licdn.com/dms/image/v2/C560BAQH4BKWIDTXg7w/company-logo_100_100/company-logo_100_100/0/1644609455924/eceubc_logo?e=1770249600&v=beta&t=htEZnBWY-VyJuwQh5wXfiUHQ9Ga-3zDJMiSRB0EOf4c"
+    },
+    {
+      "object": "LinkedinSearchParameter",
+      "title": "Corpus Christi College and St. Mark's College at UBC",
+      "id": "40655111",
+      "picture_url": "https://media.licdn.com/dms/image/v2/C4E0BAQHEW2LlDZAj7w/company-logo_100_100/company-logo_100_100/0/1630579283013?e=1770249600&v=beta&t=iPUjeFajnKciXJ7l4KMT4TxlUd-BIfcO6mSQwtW_hdI"
+    },
+    {
+      "object": "LinkedinSearchParameter",
+      "title": "UBC Faculty of Management",
+      "id": "15096347",
+      "picture_url": "https://media.licdn.com/dms/image/v2/D560BAQEApww3ELhLRg/company-logo_100_100/B56ZoDMcj7KoAQ-/0/1760990186275/ubcfom_logo?e=1770249600&v=beta&t=4-uKKC-3K5ur0tWTI8u1C-CLLm1vJChd5KrF6knkQkY"
+    },
+    {
+      "object": "LinkedinSearchParameter",
+      "title": "Vancouver School of Economics at UBC",
+      "id": "19127643",
+      "picture_url": "https://media.licdn.com/dms/image/v2/C4E0BAQHu2mZMzJxQOw/company-logo_100_100/company-logo_100_100/0/1647622500592/ubcvse_logo?e=1770249600&v=beta&t=0OiPrUj0J5nr-4pLbgAtXhra11evv2Qo_eXbN3DLYu4"
+    }
+  ],
+  "paging": {
+    "page_count": 10
+  }
+}

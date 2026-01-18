@@ -1,0 +1,93 @@
+{
+  "object": "LinkedinSearch",
+  "items": [
+    {
+      "type": "PEOPLE",
+      "id": "ACwAAAIK3bMBB7MEB4IvzHm4d8r1V6FVtGAer0A",
+      "industry": null,
+      "name": "Devon M.",
+      "first_name": "Devon",
+      "last_name": "M.",
+      "member_urn": "urn:li:member:34266547",
+      "public_identifier": "devonemacey",
+      "public_profile_url": "https://www.linkedin.com/in/devonemacey",
+      "profile_url": "https://www.linkedin.com/sales/lead/ACwAAAIK3bMBB7MEB4IvzHm4d8r1V6FVtGAer0A,NAME_SEARCH,m-63",
+      "profile_picture_url": "https://media.licdn.com/dms/image/v2/C4E03AQGP5NXS-Wqt6Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1571797625364?e=1770249600&v=beta&t=rHKzn8uVT1oO8KHCnQkCPFyihfk_STZWa8y9uw6UDzI",
+      "profile_picture_url_large": "https://media.licdn.com/dms/image/v2/C4E03AQGP5NXS-Wqt6Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1571797625444?e=1770249600&v=beta&t=M-IyzehslVlZQX1vIpw_zr_ZbcW7vx98O8cvAK_K4XI",
+      "network_distance": "DISTANCE_1",
+      "location": "Seattle, Washington, United States",
+      "headline": "Computer Scientist at Adobe",
+      "summary": "An inquisitive SWE always looking for new problems to tackle.",
+      "pending_invitation": false,
+      "current_positions": [
+        {
+          "company": "Adobe",
+          "company_id": "1480",
+          "description": "Building Adobe 3rd Party Content\u00a0Storage and Collaboration APIs.",
+          "location": "San Jose, California, United States",
+          "industry": [
+            "Software Development"
+          ],
+          "role": "Senior Computer Scientist",
+          "tenure_at_company": {
+            "years": 6,
+            "months": 4
+          },
+          "tenure_at_role": {
+            "years": null,
+            "months": 9
+          },
+          "skills": null,
+          "company_url": null,
+          "start": {
+            "month": 5,
+            "year": 2025
+          }
+        }
+      ],
+      "open_profile": false,
+      "premium": false,
+      "shared_connections_count": 1
+    }
+  ],
+  "config": {
+    "params": {
+      "api": "sales_navigator",
+      "category": "people",
+      "url": null,
+      "keywords": null,
+      "location": {
+        "include": [
+          "104116203"
+        ],
+        "exclude": null
+      },
+      "school": {
+        "include": [
+          "4373"
+        ],
+        "exclude": null
+      },
+      "company": {
+        "include": [
+          "1480"
+        ],
+        "exclude": null
+      },
+      "industry": null,
+      "company_headcount": null,
+      "tenure": null,
+      "profile_language": null,
+      "has_job_offers": null,
+      "network_distance": null,
+      "role": null,
+      "skills": null
+    }
+  },
+  "paging": {
+    "start": 0,
+    "page_count": 1,
+    "total_count": 1
+  },
+  "cursor": null
+}
