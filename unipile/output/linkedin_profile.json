@@ -1,0 +1,476 @@
+{
+  "object": "UserProfile",
+  "provider": "LINKEDIN",
+  "provider_id": "ACoAAAIK3bMB5UKEWP8_CNjsdlzUn0SfCTvYJJA",
+  "public_identifier": "devonemacey",
+  "member_urn": "34266547",
+  "first_name": "Devon",
+  "last_name": "Macey",
+  "headline": "Computer Scientist at Adobe",
+  "primary_locale": {
+    "country": "US",
+    "language": "en"
+  },
+  "is_open_profile": false,
+  "is_premium": false,
+  "is_influencer": false,
+  "is_creator": false,
+  "is_relationship": true,
+  "network_distance": "FIRST_DEGREE",
+  "is_self": false,
+  "websites": [],
+  "follower_count": 423,
+  "connections_count": 428,
+  "location": "Seattle, Washington, United States",
+  "contact_info": {
+    "phones": ["206-841-1102"]
+  },
+  "profile_picture_url": "https://media.licdn.com/dms/image/v2/C4E03AQGP5NXS-Wqt6Q/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1571797625364?e=1770249600&v=beta&t=rHKzn8uVT1oO8KHCnQkCPFyihfk_STZWa8y9uw6UDzI",
+  "profile_picture_url_large": "https://media.licdn.com/dms/image/v2/C4E03AQGP5NXS-Wqt6Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1571797625444?e=1770249600&v=beta&t=M-IyzehslVlZQX1vIpw_zr_ZbcW7vx98O8cvAK_K4XI",
+  "education_total_count": 1,
+  "education": [
+    {
+      "degree": "Bachelor of Science (B.Sc.), Mathematics and Computer Science",
+      "school_id": "4373",
+      "school": "The University of British Columbia",
+      "school_picture_url": "https://media.licdn.com/dms/image/v2/C4E0BAQH415qlDBkj8Q/company-logo_200_200/company-logo_200_200/0/1630608877834/universityofbc_logo?e=1770249600&v=beta&t=1wUHW8fxPYK1PmwxjNi3AOq8NrL6DCkYc1OtskYtDlw",
+      "start": null,
+      "end": null
+    }
+  ],
+  "work_experience_total_count": 9,
+  "work_experience": [
+    {
+      "company_id": "1480",
+      "company": "Adobe",
+      "position": "Senior Computer Scientist",
+      "description": "Building Adobe 3rd Party Content\u00a0Storage and Collaboration APIs.",
+      "status": "Full-time",
+      "company_picture_url": "https://media.licdn.com/dms/image/v2/D560BAQHilaKdJueUVg/company-logo_200_200/B56ZodIp56HUAM-/0/1761425400480?e=1770249600&v=beta&t=djz8IadKVQfvserjb94Ul0rYeyZXYIeIIqrW_z83XwE",
+      "skills": [],
+      "start": "5/1/2025",
+      "end": null
+    },
+    {
+      "company_id": "1480",
+      "company": "Adobe",
+      "position": "Senior Computer Scientist, Content Collaboration",
+      "description": "Leading CC sharing and notifications engineering squad.",
+      "status": "Full-time",
+      "company_picture_url": "https://media.licdn.com/dms/image/v2/D560BAQHilaKdJueUVg/company-logo_200_200/B56ZodIp56HUAM-/0/1761425400480?e=1770249600&v=beta&t=djz8IadKVQfvserjb94Ul0rYeyZXYIeIIqrW_z83XwE",
+      "skills": [],
+      "start": "3/1/2023",
+      "end": "7/1/2025"
+    },
+    {
+      "company_id": "1480",
+      "company": "Adobe",
+      "position": "Senior Computer Scientist, Creative Cloud Services, Performance Engineering",
+      "status": "Full-time",
+      "company_picture_url": "https://media.licdn.com/dms/image/v2/D560BAQHilaKdJueUVg/company-logo_200_200/B56ZodIp56HUAM-/0/1761425400480?e=1770249600&v=beta&t=djz8IadKVQfvserjb94Ul0rYeyZXYIeIIqrW_z83XwE",
+      "skills": [],
+      "start": "4/1/2022",
+      "end": "3/1/2023"
+    },
+    {
+      "company_id": "1480",
+      "company": "Adobe",
+      "position": "Senior Software Engineer, Content Platform Engineering, Collaboration",
+      "company_picture_url": "https://media.licdn.com/dms/image/v2/D560BAQHilaKdJueUVg/company-logo_200_200/B56ZodIp56HUAM-/0/1761425400480?e=1770249600&v=beta&t=djz8IadKVQfvserjb94Ul0rYeyZXYIeIIqrW_z83XwE",
+      "skills": [],
+      "start": "10/1/2019",
+      "end": "4/1/2022"
+    },
+    {
+      "company_id": "5128",
+      "company": "Nasdaq",
+      "position": "Lead Software Engineer, US Equities Core Development",
+      "location": "Toronto, Canada Area",
+      "company_picture_url": "https://media.licdn.com/dms/image/v2/C4E0BAQHa5sYUYvnOfw/company-logo_200_200/company-logo_200_200/0/1651501366522/nasdaq_logo?e=1770249600&v=beta&t=SMbDgQ6xtAJPvsbagm0hyM8RLcVcKV_l1F4_s98E6b4",
+      "skills": [
+        "Exchange Connectivity",
+        "CI",
+        "Stream Processing",
+        "Trading Systems",
+        "Order Management",
+        "Technical Leadership",
+        "Representational State Transfer (REST)"
+      ],
+      "start": "7/1/2018",
+      "end": "1/1/2020"
+    },
+    {
+      "company_id": "1800",
+      "company": "RBC Capital Markets",
+      "position": "Sr. Software Engineer, Fixed Income Currencies & Commodities",
+      "location": "Toronto, Canada Area",
+      "company_picture_url": "https://media.licdn.com/dms/image/v2/D560BAQHK2HGRDqVETA/company-logo_200_200/company-logo_200_200/0/1719859855575/rbc_capital_markets_logo?e=1770249600&v=beta&t=_2nd5tHQo4ajHZUUj3ZeAOZylrmSsCcQifaLa-USAGk",
+      "skills": [
+        "Exchange Connectivity",
+        "CI",
+        "Stream Processing",
+        "Trading Systems",
+        "Order Management",
+        "Representational State Transfer (REST)",
+        "Mathematics"
+      ],
+      "start": "7/1/2017",
+      "end": "7/1/2018"
+    },
+    {
+      "company_id": "23230",
+      "company": "CPP Investments | Investissements RPC",
+      "position": "Senior Software Engineer, Global Tactical Asset Allocation",
+      "location": "Toronto, Canada Area",
+      "company_picture_url": "https://media.licdn.com/dms/image/v2/D560BAQEcwNjoTEjPuA/company-logo_200_200/company-logo_200_200/0/1720013296544/cppinvestmentsinvestissementsrpc_logo?e=1770249600&v=beta&t=E845WKoGbE1d9PKt_L7e7ZWZkcoN1Xd1sbBm7iGlGFs",
+      "skills": [
+        "Exchange Connectivity",
+        "CI",
+        "Trading Systems",
+        "Order Management",
+        "Representational State Transfer (REST)"
+      ],
+      "start": "5/1/2016",
+      "end": "7/1/2017"
+    },
+    {
+      "company_id": "497017",
+      "company": "Morgan Stanley",
+      "position": "Lead Software Engineer, Technology and Information Risk",
+      "location": "Montreal, Canada Area",
+      "company_picture_url": "https://media.licdn.com/dms/image/v2/C560BAQFtDpMvYgbIwA/company-logo_200_200/company-logo_200_200/0/1677778128461/morgan_stanley_logo?e=1770249600&v=beta&t=BszKNPB_1xE-aGoA60a-8ApyM3zoJIX-WP4syPIIMGw",
+      "skills": ["CI", "Technical Leadership"],
+      "start": "7/1/2014",
+      "end": "6/1/2016"
+    },
+    {
+      "company_id": "9978",
+      "company": "MDA",
+      "position": "Software Engineer, Geospatial Services",
+      "location": "Greater Vancouver, British Columbia, Canada",
+      "company_picture_url": "https://media.licdn.com/dms/image/v2/D560BAQGgcPQ4CzDOmA/company-logo_200_200/company-logo_200_200/0/1719841394256/mdaspace_logo?e=1770249600&v=beta&t=uFxuEpAfT-6x74nPg0CXG62eBtkdqjETa-0A6c6GZuI",
+      "skills": [],
+      "start": "5/1/2009",
+      "end": "7/1/2014"
+    }
+  ],
+  "skills_total_count": 42,
+  "skills": [
+    {
+      "name": "Technical Leadership",
+      "endorsement_count": 0,
+      "insights": ["2 experiences across Nasdaq and 1 other company"],
+      "endorsement_id": 714935623,
+      "endorsed": false
+    },
+    {
+      "name": "Representational State Transfer (REST)",
+      "endorsement_count": 0,
+      "insights": ["3 experiences across Nasdaq and 2 other companies"],
+      "endorsement_id": 714917557,
+      "endorsed": false
+    },
+    {
+      "name": "CI",
+      "endorsement_count": 0,
+      "insights": ["4 experiences across Nasdaq and 3 other companies"],
+      "endorsement_id": 714902466,
+      "endorsed": false
+    },
+    {
+      "name": "Stream Processing",
+      "endorsement_count": 0,
+      "insights": ["2 experiences across Nasdaq and 1 other company"],
+      "endorsement_id": 2102334477,
+      "endorsed": false
+    },
+    {
+      "name": "Analytical Skills",
+      "endorsement_count": 0,
+      "insights": [],
+      "endorsement_id": 2102315138,
+      "endorsed": false
+    },
+    {
+      "name": "Computer Science",
+      "endorsement_count": 0,
+      "insights": ["The University of British Columbia"],
+      "endorsement_id": 2102305332,
+      "endorsed": false
+    },
+    {
+      "name": "Exchange Connectivity",
+      "endorsement_count": 0,
+      "insights": ["3 experiences across Nasdaq and 2 other companies"],
+      "endorsement_id": 2102295570,
+      "endorsed": false
+    },
+    {
+      "name": "Mathematics",
+      "endorsement_count": 0,
+      "insights": [
+        "Sr. Software Engineer, Fixed Income Currencies & Commodities at RBC Capital Markets",
+        "The University of British Columbia"
+      ],
+      "endorsement_id": 2102281408,
+      "endorsed": false
+    },
+    {
+      "name": "Order Management",
+      "endorsement_count": 0,
+      "insights": ["3 experiences across Nasdaq and 2 other companies"],
+      "endorsement_id": 2102268282,
+      "endorsed": false
+    },
+    {
+      "name": "Trading Systems",
+      "endorsement_count": 0,
+      "insights": ["3 experiences across Nasdaq and 2 other companies"],
+      "endorsement_id": 2102252271,
+      "endorsed": false
+    },
+    {
+      "name": "Java",
+      "endorsement_count": 16,
+      "insights": ["Passed LinkedIn Skill Assessment"],
+      "endorsement_id": 74,
+      "endorsed": false
+    },
+    {
+      "name": "Software Development",
+      "endorsement_count": 21,
+      "insights": [],
+      "endorsement_id": 73,
+      "endorsed": false
+    },
+    {
+      "name": "Microsoft SQL Server",
+      "endorsement_count": 6,
+      "insights": [],
+      "endorsement_id": 75,
+      "endorsed": false
+    },
+    {
+      "name": "Object Oriented Design",
+      "endorsement_count": 6,
+      "insights": [],
+      "endorsement_id": 76,
+      "endorsed": false
+    },
+    {
+      "name": "Software Engineering",
+      "endorsement_count": 5,
+      "insights": [],
+      "endorsement_id": 79,
+      "endorsed": false
+    },
+    {
+      "name": "Agile Methodologies",
+      "endorsement_count": 1,
+      "insights": ["Passed LinkedIn Skill Assessment"],
+      "endorsement_id": 99,
+      "endorsed": false
+    },
+    {
+      "name": "Web Applications",
+      "endorsement_count": 1,
+      "insights": [],
+      "endorsement_id": 101,
+      "endorsed": false
+    },
+    {
+      "name": "Web Services",
+      "endorsement_count": 1,
+      "insights": [],
+      "endorsement_id": 103,
+      "endorsed": false
+    },
+    {
+      "name": "Integration",
+      "endorsement_count": 1,
+      "insights": [],
+      "endorsement_id": 104,
+      "endorsed": false
+    },
+    {
+      "name": "Scrum",
+      "endorsement_count": 1,
+      "insights": [],
+      "endorsement_id": 4,
+      "endorsed": false
+    },
+    {
+      "name": "Software Development Life Cycle (SDLC)",
+      "endorsement_count": 0,
+      "insights": [],
+      "endorsement_id": 11,
+      "endorsed": false
+    },
+    {
+      "name": "Distributed Systems",
+      "endorsement_count": 0,
+      "insights": [],
+      "endorsement_id": 18,
+      "endorsed": false
+    },
+    {
+      "name": "Spring",
+      "endorsement_count": 2,
+      "insights": ["Passed LinkedIn Skill Assessment"],
+      "endorsement_id": 85,
+      "endorsed": false
+    },
+    {
+      "name": "Github",
+      "endorsement_count": 1,
+      "insights": [],
+      "endorsement_id": 2,
+      "endorsed": false
+    },
+    {
+      "name": "SQL",
+      "endorsement_count": 1,
+      "insights": [],
+      "endorsement_id": 1,
+      "endorsed": false
+    },
+    {
+      "name": "Unix",
+      "endorsement_count": 0,
+      "insights": [],
+      "endorsement_id": 3,
+      "endorsed": false
+    },
+    {
+      "name": "Linux",
+      "endorsement_count": 0,
+      "insights": [],
+      "endorsement_id": 6,
+      "endorsed": false
+    },
+    {
+      "name": "Software as a Service (SaaS)",
+      "endorsement_count": 0,
+      "insights": [],
+      "endorsement_id": 12,
+      "endorsed": false
+    },
+    {
+      "name": "Python (Programming Language)",
+      "endorsement_count": 0,
+      "insights": ["Passed LinkedIn Skill Assessment"],
+      "endorsement_id": 16,
+      "endorsed": false
+    },
+    {
+      "name": "Scala",
+      "endorsement_count": 0,
+      "insights": ["Passed LinkedIn Skill Assessment"],
+      "endorsement_id": 9,
+      "endorsed": false
+    },
+    {
+      "name": "Docker",
+      "endorsement_count": 1,
+      "insights": [],
+      "endorsement_id": 20,
+      "endorsed": false
+    },
+    {
+      "name": "Docker Products",
+      "endorsement_count": 0,
+      "insights": [],
+      "endorsement_id": 21,
+      "endorsed": false
+    },
+    {
+      "name": "JavaScript",
+      "endorsement_count": 0,
+      "insights": [],
+      "endorsement_id": 22,
+      "endorsed": false
+    },
+    {
+      "name": "XML",
+      "endorsement_count": 3,
+      "insights": [],
+      "endorsement_id": 24,
+      "endorsed": false
+    },
+    {
+      "name": "Git",
+      "endorsement_count": 0,
+      "insights": ["Passed LinkedIn Skill Assessment"],
+      "endorsement_id": 27,
+      "endorsed": false
+    },
+    {
+      "name": "Spring Framework",
+      "endorsement_count": 0,
+      "insights": ["Passed LinkedIn Skill Assessment"],
+      "endorsement_id": 31,
+      "endorsed": false
+    },
+    {
+      "name": "Continuous Integration and Continuous Delivery (CI/CD)",
+      "endorsement_count": 2,
+      "insights": [],
+      "endorsement_id": 5,
+      "endorsed": false
+    },
+    {
+      "name": "DevOps",
+      "endorsement_count": 0,
+      "insights": [],
+      "endorsement_id": 7,
+      "endorsed": false
+    },
+    {
+      "name": "Kubernetes",
+      "endorsement_count": 1,
+      "insights": [],
+      "endorsement_id": 8,
+      "endorsed": false
+    },
+    {
+      "name": "GitLab",
+      "endorsement_count": 0,
+      "insights": [],
+      "endorsement_id": 10,
+      "endorsed": false
+    },
+    {
+      "name": "Akka",
+      "endorsement_count": 0,
+      "insights": [],
+      "endorsement_id": 17,
+      "endorsed": false
+    },
+    {
+      "name": "Microservices",
+      "endorsement_count": 0,
+      "insights": [],
+      "endorsement_id": 19,
+      "endorsed": false
+    }
+  ],
+  "languages_total_count": 2,
+  "languages": [
+    {
+      "name": "English",
+      "proficiency": "Native or bilingual proficiency"
+    },
+    {
+      "name": "French",
+      "proficiency": "Professional working proficiency"
+    }
+  ],
+  "certifications_total_count": 0,
+  "certifications": [],
+  "summary": "An inquisitive SWE always looking for new problems to tackle.",
+  "volunteering_experience_total_count": 0,
+  "volunteering_experience": [],
+  "projects_total_count": 0,
+  "projects": [],
+  "shared_connections_count": 1
+}
